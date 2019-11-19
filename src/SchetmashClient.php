@@ -133,18 +133,20 @@ final class SchetmashClient implements LoggerAwareInterface
 
     $body = \json_decode($responseBody);
 
+    $payload = property_exists($body, 'payload') ? $body->payload : [];
+
     if ($request instanceof TokenRequest)
     {
       return new TokenResponse($body->token);
     } else if ($request instanceof ReceiptRegistrationRequest)
     {
-      return new ReceiptRegistrationResponse($body->id, $body->status, $body->payload);
-    } else if ($request instanceof ReceiptRegistrationRequest)
+      return new ReceiptRegistrationResponse($body->id, $body->status, $payload);
+    } else if ($request instanceof ReceiptCorrectionRequest)
     {
-      return new ReceiptCorrectionRequest($body->id, $body->status);
+      return new ReceiptRegistrationResponse($body->id, $body->status, $payload);
     } else if ($request instanceof ReceiptStatusRequest)
     {
-      return new ReceiptRegistrationResponse($body->id, $body->status); #TODO: status with payload
+      return new ReceiptRegistrationResponse($body->id, $body->status, $payload);
     } 
 
     throw new \Exception('no response');
