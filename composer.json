@@ -1,0 +1,22 @@
+{
+  "name": "maksze/schetmash-sdk",
+  "type": "library",
+  "description":  "Библиотека для работы с api Счетмаш Онлайн",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maks Ze",
+      "email": "iam@maksze.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SchetmashSDK\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SchetmashSDK\\Tests\": "tests/"
+    }
+  }
+}
